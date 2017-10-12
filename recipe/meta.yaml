@@ -14,14 +14,21 @@ source:
     - https://cran.r-project.org/src/contrib/Archive/nycflights13/nycflights13_{{ version }}.tar.gz
   sha256: cc13051face739eecf3a5a2654a53d51110b0aa3968cb47b5bfb95053dbfa7a0
 
-build:
-  number: 0
-  skip: true  # [win32]
 
+  # patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  # If this is a new build for the same version, increment the build number.
+  number: 0
+
+  # This is required to make R link correctly on Linux.
   rpaths:
     - lib/R/lib/
     - lib/
 
+# Suggests: dplyr
 requirements:
   build:
     - r-base
@@ -33,8 +40,15 @@ requirements:
 
 test:
   commands:
-    - $R -e "library('nycflights13')"  # [not win]
+    # You can put additional test commands to be run here.
+    - $R -e "library('nycflights13')"           # [not win]
     - "\"%R%\" -e \"library('nycflights13')\""  # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
 
 about:
   home: http://github.com/hadley/nycflights13
@@ -47,3 +61,30 @@ extra:
   recipe-maintainers:
     - johanneskoester
     - bgruening
+    - mingwandroid
+
+# The original CRAN metadata for this package was:
+
+# Package: nycflights13
+# Title: Flights that Departed NYC in 2013
+# Version: 0.2.2
+# Authors@R: c( person("Hadley", "Wickham", , "hadley@rstudio.com", c("aut", "cre")), person("RStudio", role = "cph") )
+# Description: Airline on-time data for all flights departing NYC in 2013. Also includes useful 'metadata' on airlines, airports, weather, and planes.
+# License: CC0
+# LazyData: true
+# Depends: R (>= 2.10)
+# Imports: tibble
+# Suggests: dplyr
+# URL: http://github.com/hadley/nycflights13
+# BugReports: https://github.com/hadley/nycflights13/issues
+# RoxygenNote: 5.0.1.9000
+# NeedsCompilation: no
+# Packaged: 2017-01-27 14:44:04 UTC; hadley
+# Author: Hadley Wickham [aut, cre], RStudio [cph]
+# Maintainer: Hadley Wickham <hadley@rstudio.com>
+# Repository: CRAN
+# Date/Publication: 2017-01-27 15:54:20
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
