@@ -10,8 +10,8 @@ package:
 source:
   fn: nycflights13_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/nycflights13_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/nycflights13/nycflights13_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/nycflights13_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/nycflights13/nycflights13_{{ version }}.tar.gz
   sha256: cc13051face739eecf3a5a2654a53d51110b0aa3968cb47b5bfb95053dbfa7a0
 
 
